@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 function CallToAction() {
   return (
-    <section className="py-20 px-4">
+    <section className="sm:py-20 px-4">
       <div className="max-w-7xl mx-auto text-center space-y-8">
         <h2 className="text-3xl lg:text-5xl font-bold text-balance">
           Ready to Transform Your Fitness?

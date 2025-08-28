@@ -3,16 +3,17 @@ import Faq from "@/components/Faq";
 import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
+import Testimonials from "@/components/Testimonials";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="w-full ">
       <Hero />
       <Feature />
       <Stats />
-      <CallToAction />
-
+      <Testimonials />
       <Faq />
+      <CallToAction />
     </div>
   );
 };

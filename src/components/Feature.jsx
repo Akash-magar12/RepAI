@@ -77,7 +77,7 @@ const Feature = () => {
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className="w-full h-40 object-cover mb-4"
+                  className="w-full h-40 rounded-md object-cover mb-4"
                 />
                 <CardTitle className="text-xl font-semibold text-center">
                   {feature.title}

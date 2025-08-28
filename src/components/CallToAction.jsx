@@ -10,7 +10,7 @@ function CallToAction() {
         </h2>
         <p className="text-xl text-muted-foreground text-pretty">
           Join thousands of users who have already achieved their fitness goals
-          with RepAI's intelligent coaching.
+          with RepAI&apos;s intelligent coaching.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="text-lg px-8">

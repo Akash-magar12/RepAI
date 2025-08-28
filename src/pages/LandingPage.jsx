@@ -7,7 +7,7 @@ import Testimonials from "@/components/Testimonials";
 
 const LandingPage = () => {
   return (
-    <div className="w-full ">
+    <div className="w-full min-h-screen ">
       <Hero />
       <Feature />
       <Stats />

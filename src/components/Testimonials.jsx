@@ -39,7 +39,7 @@ const Testimonials = () => {
                 alt={review.name}
                 className="w-16 h-16 rounded-full mx-auto mb-4"
               />
-              <p className="text-gray-600 italic mb-4">&quot;{review.feedback}"</p>
+              <p className="text-gray-600 italic mb-4">&quot;{review.feedback}&quot;</p>
               <h4 className="font-semibold">{review.name}</h4>
               <span className="text-sm text-gray-500">{review.role}</span>
             </div>

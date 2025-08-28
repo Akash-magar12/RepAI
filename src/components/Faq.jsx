@@ -43,7 +43,6 @@ const Faq = () => {
         type="single"
         collapsible
         className="w-full"
-        defaultValue="item-0"
       >
         {faqs.map((item, i) => (
           <AccordionItem key={i} value={`item-${i}`}>

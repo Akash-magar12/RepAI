@@ -1,8 +1,20 @@
+import CallToAction from "@/components/CallToAction";
+import Faq from "@/components/Faq";
+import Feature from "@/components/Feature";
+import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
-  )
-}
+    <div>
+      <Hero />
+      <Feature />
+      <Stats />
+      <CallToAction />
 
-export default LandingPage
+      <Faq />
+    </div>
+  );
+};
+
+export default LandingPage;

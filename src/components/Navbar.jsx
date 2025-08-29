@@ -4,11 +4,21 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "./ui/dropdown-menu";
+import useUserStore from "@/store/useUserStore";
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user, setUser, logout } = useUserStore();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
@@ -21,6 +31,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      logout();
       toast.success("Logout successful", {
         description: "You have been logged out!",
         action: {
@@ -40,7 +51,7 @@ const Navbar = () => {
   if (loading) return null;
 
   return (
-    <nav className="flex  items-center justify-between">
+    <nav className="flex items-center justify-between">
       <Link to="/">
         <h2 className="text-lg font-bold">RepAI</h2>
       </Link>
@@ -55,7 +66,36 @@ const Navbar = () => {
             </Link>
           </>
         ) : (
-          <Button onClick={handleLogout}>Log Out</Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              {/* ✅ use a wrapper div instead of Button to avoid ref error */}
+              <div className="cursor-pointer rounded-full">
+                <Avatar>
+                  <AvatarImage
+                    src={user?.photoURL || "https://github.com/shadcn.png"}
+                  />
+                  <AvatarFallback>
+                    {user?.displayName?.[0]?.toUpperCase() || "U"}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className="w-48 bg-white shadow-md rounded-lg">
+              <DropdownMenuLabel>
+                {user?.displayName || "My Account"}
+                <p className="text-xs text-gray-500">{user?.email}</p>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => navigate("/profile")}>
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/settings")}>
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
       </div>
     </nav>

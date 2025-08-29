@@ -1,8 +1,9 @@
+import { auth } from "@/config/firebase";
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  const user = auth.currentUser;
+  console.log(user);
+  return <div>Profile</div>;
+};
 
-export default Profile
+export default Profile;

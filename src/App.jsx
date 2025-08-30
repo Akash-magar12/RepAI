@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -16,14 +17,18 @@ const App = () => {
         },
         {
           path: "/profile",
-          element: <Profile />,
+          element: (
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          ),
         },
         { path: "/login", element: <Login /> },
         { path: "/signup", element: <Signup /> },
       ],
     },
   ]);
-  return <RouterProvider router={router}  />;
+  return <RouterProvider router={router} />;
 };
 
 export default App;

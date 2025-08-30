@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { toast } from "sonner";
@@ -16,17 +16,14 @@ import {
 import useUserStore from "@/store/useUserStore";
 
 const Navbar = () => {
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { user, setUser, logout } = useUserStore();
-
+  const { user, setUser, logout, loading } = useUserStore();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       setUser(u);
-      setLoading(false);
     });
     return () => unsubscribe();
-  }, []);
+  }, [setUser]);
 
   const handleLogout = async () => {
     try {
@@ -47,9 +44,14 @@ const Navbar = () => {
       });
     }
   };
-
-  if (loading) return null;
-
+  if (loading) {
+    return (
+      <nav className="flex items-center justify-between p-4 shadow">
+        <h2 className="text-lg font-bold">RepAI</h2>
+        <p className="text-sm text-gray-500">Loading...</p>
+      </nav>
+    );
+  }
   return (
     <nav className="flex items-center justify-between">
       <Link to="/">
